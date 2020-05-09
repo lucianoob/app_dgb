@@ -7,6 +7,7 @@ const schemaObj = new Schema({
   titulo: { type: String, required: true },
   valor_inicial: { type: Number, required: true },
   valor_final: { type: Number, required: true },
+  cashback: { type: Number, required: true },
   created: { type: Date, default: Date.now },
   modified: { type: Date, default: Date.now }
 }, schemaOpts);
