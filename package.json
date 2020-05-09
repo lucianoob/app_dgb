@@ -1,7 +1,23 @@
 {
   "name": "app_dgb",
-  "version": "1.0.0",
+  "version": "1.0.16",
   "description": "",
   "main": "index.js",
-  "author": "Luciano Borges"
+  "author": "Luciano Borges",
+  "scripts": {
+    "start": "node server.js",
+    "tests": "./node_modules/.bin/jest"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cpf": "^2.0.1",
+    "express": "^4.17.1",
+    "faker": "^4.1.0",
+    "md5": "^2.2.1",
+    "mongoose": "^5.9.12"
+  },
+  "devDependencies": {
+    "jest": "^26.0.1",
+    "supertest": "^4.0.2"
+  }
 }
