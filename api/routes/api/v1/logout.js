@@ -3,7 +3,8 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', function(req, res) {
-  res.status(200).send({ auth: false, token: null });
+	res.clearCookie('token');
+  	res.send({ status: 'ok', data: '', token: null });
 });
 
 module.exports = router;

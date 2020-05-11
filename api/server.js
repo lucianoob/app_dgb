@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cookieParser = require("cookie-parser")
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
+
 
 const utils = require('./libs/utils.js');
 const defaults = require('./libs/defaults.js');
@@ -12,11 +14,12 @@ const db = require('./db.js');
 db(false);
 
 require("dotenv-safe").config();
+app.use(cors());
 
 defaults.administradores();
 defaults.bonificacao();
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use('/api/v1', api);

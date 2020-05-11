@@ -10,7 +10,6 @@ const logged = function(req, res, next){
     if (err) {      
       return res.status(500).json({ status: 'error', data: 'Token não é válido.' });
     } else {
-      req.userId = result.id;
       next();
     }
   });
