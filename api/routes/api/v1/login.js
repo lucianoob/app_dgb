@@ -14,7 +14,8 @@ router.post('/', async (req, res, next) => {
 	let administrador = await Administradores.findOne({email: usuario, senha: senha });
 	let revendedor = await Revendedores.findOne({ $or: [{email: usuario}, {cpf: usuario}], senha: senha });
 	if(administrador || revendedor){
-	  	const id = (administrador ? administrador._id : null) || (revendedor ? revendedor._id : null);
+	  	const id = (administrador ? administrador._id.toString() : null) || (revendedor ? revendedor._id.toString() : null);
+	  	console.log(id);
 	  	let token = jwt.sign({ id }, process.env.SECRET, {
     		expiresIn: configs.expires_date
 	  	});

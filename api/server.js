@@ -16,7 +16,10 @@ const db = require('./db.js');
 
 db(false);
 
-require("dotenv-safe").config();
+if(process.env.NODE_ENV != 'testing') {
+	require("dotenv-safe").config();
+}
+
 app.use(cors());
 
 defaults.administradores();

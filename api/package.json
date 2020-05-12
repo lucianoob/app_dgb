@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "tests": "./node_modules/.bin/jest"
+    "tests": "env NODE_ENV=testing SECRET=testing ./node_modules/.bin/jest"
   },
   "dependencies": {
     "axios": "^0.19.2",

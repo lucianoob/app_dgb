@@ -22,7 +22,7 @@ afterAll(() => {
 
 describe('Routes Tests: initializing server tests...', () => {
    test('Routes Tests: check server', async () => {
-      const response = await request(server).get('/');
+      const response = await request(server).get('/api/v1');
       expect(response.status).toEqual(200);
       expect(response.text).toContain('App init!');
    });
@@ -150,7 +150,7 @@ describe('Routes Tests: initializing revendedores tests...', () => {
 
    test('Routes Tests: API insert revendedores', async () => {
       const data = {nome: faker.name.firstName()+' '+faker.name.lastName(), cpf: CPF.generate(false), email: faker.internet.email(), senha: faker.internet.password()};
-      const response = await request(server).post('/api/v1/revendedores').type('form').send(data).set('Cookie', token);
+      const response = await request(server).post('/api/v1/cadastro').type('form').send(data).set('Cookie', token);
       expect(response.status).toEqual(200);
 
       const json = JSON.parse(response.text);

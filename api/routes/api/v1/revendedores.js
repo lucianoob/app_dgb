@@ -28,6 +28,24 @@ router.get('/:query', function(req, res) {
   });
 });
 
+router.post('/', function(req, res) {
+  let data = req.body;
+  if(data.nome && data.cpf && data.email && data.senha) {
+    data.senha = md5(data.senha);
+    Revendedores.create(data, function (error, result) {
+      if(error) {
+        utils.log('Revendedores Error', error);
+        res.json({status: 'error', data: error});
+      } else {
+        res.json({status: 'ok', data: result});
+      }
+   });
+  } else {
+    utils.log('Revendedores Error', 'data not found!');
+    res.json({status: 'error', data: null});
+  }
+});
+
 router.post('/:id', function(req, res) {
   let data = req.body, id = req.params.id;
   if(id && data.nome && data.cpf && data.email && data.senha) {
