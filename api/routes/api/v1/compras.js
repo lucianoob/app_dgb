@@ -1,14 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const configs = require('../../../libs/configs.js');
 const utils = require('../../../libs/utils.js');
 
 const Revendedores = require('../../../models/Revendedores');
 const Compras = require('../../../models/Compras');
 
-const revendedor_master = '15350946056';
-
 router.get('/', function(req, res) {
-  let query = req.query.revendedor ? {revendedor: req.query.revendedor} : null;
+  let query = req.session.user ? {revendedor: req.session.user.cpf} : null;
 	Compras.find(query).lean().exec((error, result) => {
   	if(error) {
     		utils.log('Compras Error', error);
@@ -21,8 +20,11 @@ router.get('/', function(req, res) {
 
 router.post('/', async function(req, res) {
   let data = req.body;
+  if(!data.revendedor) {
+    data.revendedor = req.session.user ? req.session.user.cpf : null;
+  }
   if(data.revendedor && data.codigo && data.valor && data.data) {
-    if(data.revendedor === revendedor_master) {
+    if(data.revendedor === configs.revendedor_master) {
       data.status = 'Aprovado';
     }
   	Compras.create(data, function (error, result) {
@@ -50,7 +52,7 @@ router.get('/:query', function(req, res) {
       }
     });
   } else {
-    Compras.findOne({'_id': req.params.query}).lean().exec((error, result) => {
+    Compras.findById(req.params.query).lean().exec((error, result) => {
       if(error) {
           utils.log('Compras Error', error);
           res.json({status: 'ok', data: null});

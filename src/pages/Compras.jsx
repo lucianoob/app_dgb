@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import moment from 'moment';
+import NumberFormat from 'react-number-format';
 
 import Header from '../components/Header';
 import './Compras.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart, faPenSquare } from '@fortawesome/free-solid-svg-icons';
 
 class Compras extends Component {
   state = {
-    
+    compras: []
   }
 
   componentDidMount() {
-  
+    axios.get('/api/v1/compras').then((res) => {
+      let ret = res.data;
+      console.log('compras: ', ret);
+      this.setState({compras: ret.data}); 
+    }).catch((error) => {
+      console.log(error);
+    });
   }
   
   render() {
@@ -26,7 +35,7 @@ class Compras extends Component {
                         <div className="card">
                             <div className="card-header"><FontAwesomeIcon icon={faShoppingCart}/> Compras</div>
                             <div className="card-body">
-                                <table class="table table-striped">
+                                <table className="table table-striped">
                                   <thead>
                                     <tr>
                                       <th scope="col">#</th>
@@ -34,18 +43,33 @@ class Compras extends Component {
                                       <th scope="col">Data</th>
                                       <th scope="col">Valor</th>
                                       <th scope="col">Status</th>
+                                      <th scope="col"></th>
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    <tr>
-                                      <th scope="row">1</th>
-                                      <td>AFDRSD12UF</td>
-                                      <td>12/01/2020</td>
-                                      <td>R$ 320,15</td>
-                                      <td>Em Aprovação</td>
-                                    </tr>
+                                    { this.state.compras.map((item, index) =>
+                                        <tr key={index}>
+                                          <th scope="row">{index}</th>
+                                          <td>{item.codigo}</td>
+                                          <td>{moment(item.data).format('DD/MM/YYYY')}</td>
+                                          <td><NumberFormat value={item.valor} displayType={'text'} decimalSeparator="," thousandSeparator="." prefix={'R$ '} /></td>
+                                          <td>{item.status}</td>
+                                          <td>
+                                            { item.status === 'Em validação' &&
+                                                <button type="button" className="btn btn-secondary" onClick={() => window.location = '/compra/'+item._id}>
+                                                    <FontAwesomeIcon icon={faPenSquare}/>
+                                                </button>
+                                            }
+                                          </td>
+                                        </tr>
+                                    )}
                                   </tbody>
                                 </table>
+                            </div>
+                            <div className="card-footer">
+                              <button type="button" className="btn btn-primary" onClick={() => window.location = '/compra'}>
+                                  Nova Compra
+                              </button>
                             </div>
                         </div>
                     </div>

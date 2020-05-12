@@ -52,7 +52,7 @@ class Sobre extends Component {
                               <h5><b>Frontend Libs</b></h5>
                               { Object.keys(this.state.sobre.frontend.dependencies).map((item) =>
                                   <p>
-                                    <a href={'https://www.npmjs.com/package/'+item} target="_blank">
+                                    <a href={'https://www.npmjs.com/package/'+item} target="_blank" rel="noopener noreferrer">
                                       <b>{item} v{this.state.sobre.frontend.dependencies[item]}</b>
                                     </a>
                                   </p>
@@ -65,7 +65,7 @@ class Sobre extends Component {
                               <h5><b>Backend Libs</b></h5>
                               { Object.keys(this.state.sobre.backend.dependencies).map((item) =>
                                   <p>
-                                    <a href={'https://www.npmjs.com/package/'+item} target="_blank">
+                                    <a href={'https://www.npmjs.com/package/'+item} target="_blank" rel="noopener noreferrer">
                                       <b>{item} v{this.state.sobre.backend.dependencies[item]}</b>
                                     </a>
                                   </p>

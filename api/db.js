@@ -1,13 +1,11 @@
 
 const mongoose = require('mongoose');
+const configs = require('./libs/configs.js');
 const utils = require('./libs/utils.js');
-
-const server = 'mongodb://localhost:27017/';
-const mongodb = 'app_dgb';
 
 const connect = (log = true) => {
   mongoose.Promise = global.Promise;
-  mongoose.connect(server+mongodb, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true }, function(err){
+  mongoose.connect(configs.mongo_server_url+configs.mongo_server_db, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true }, function(err){
     var admin = new mongoose.mongo.Admin(mongoose.connection.db);
     admin.buildInfo(function (err, info) {
       if(log) {

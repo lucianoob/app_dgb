@@ -1,6 +1,6 @@
 {
   "name": "app_dgb_api",
-  "version": "1.0.42",
+  "version": "1.1.68",
   "description": "This is the backend (API) project from App DGB.",
   "author": {
     "name": "Luciano Borges",
@@ -12,15 +12,20 @@
     "tests": "./node_modules/.bin/jest"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "body-parser": "^1.19.0",
+    "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.5",
     "cpf": "^2.0.1",
     "dotenv-safe": "^8.2.0",
+    "email-validator": "^2.0.4",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "faker": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
     "md5": "^2.2.1",
-    "mongoose": "^5.9.12"
+    "mongoose": "^5.9.12",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "jest": "^26.0.1",

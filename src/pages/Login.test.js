@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import App from './App';
+import Login from './Login';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('Login Test', async () => {
+  const { queryAllByText } = render(<Login />);
+  const textElement = await queryAllByText(/Login/i);
+  expect(textElement).toHaveLength(2);
 });

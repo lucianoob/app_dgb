@@ -48,7 +48,7 @@ class Header extends Component {
                         { getCookie('token') ?
                             <>
                             <li className="nav-item">
-                                <a className="nav-link" href="/cadastro"><FontAwesomeIcon icon={faUserEdit}/> Meu Cadastro</a>
+                                <a className="nav-link" href="/perfil"><FontAwesomeIcon icon={faUserEdit}/> Meu Perfil</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="/cashback"><FontAwesomeIcon icon={faMoneyBillWave}/> Meu Cashback</a>

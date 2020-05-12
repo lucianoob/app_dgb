@@ -1,6 +1,6 @@
 {
   "name": "app_dgb",
-  "version": "1.0.48",
+  "version": "1.2.32",
   "description": "This is App DGB project.",
   "author": {
     "name": "Luciano Borges",
@@ -10,8 +10,9 @@
   "scripts": {
     "start": "npm-run-all --parallel api-start react-start",
     "api-start": "node api/server.js",
-    "react-start": "react-scripts start ",
+    "react-start": "react-scripts start",
     "react-build": "react-scripts build",
+    "build": "npm run react-build && npm run api-start",
     "test": "react-scripts test"
   },
   "dependencies": {
@@ -24,12 +25,13 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "cors": "^2.8.5",
+    "moment": "^2.25.3",
     "npm-run-all": "^4.1.5",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
-    "react-currency-input": "^1.3.6",
     "react-dom": "^16.13.1",
     "react-input-mask": "^2.0.4",
+    "react-number-format": "^4.4.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1"
   },

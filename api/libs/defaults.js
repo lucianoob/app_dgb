@@ -2,9 +2,11 @@ const md5 = require('md5');
 
 const Administradores = require('../models/Administradores');
 const Bonificacao = require('../models/Bonificacao');
+const Revendedores = require('../models/Revendedores');
 
 const AdministradoresDefaultPath = '../models/Administradores/default.json';
 const BonificacaoDefaultPath = '../models/Bonificacao/default.json';
+const RevendedoresDefaultPath = '../models/Revendedores/default.json';
 
 module.exports.administradores = async function () { 
 	delete require.cache[require.resolve(AdministradoresDefaultPath)];
@@ -25,6 +27,18 @@ module.exports.bonificacao = async function () {
 		let data = await Bonificacao.findOne({ titulo: bonificacao_default.titulo, cashback: bonificacao_default.cashback });
 		if(!data) {
 		  	await Bonificacao.create(bonificacao_default);
+		}
+	});
+};
+
+module.exports.revendedores = async function () { 
+	delete require.cache[require.resolve(RevendedoresDefaultPath)];
+  	RevendedoresDefault = require(require.resolve(RevendedoresDefaultPath));
+	RevendedoresDefault.forEach(async (revendedores_default) => {
+		let data = await Revendedores.findOne({ cpf: revendedores_default.cpf });
+		if(!data) {
+			revendedores_default.senha = md5(revendedores_default.senha);
+		  	await Revendedores.create(revendedores_default);
 		}
 	});
 };

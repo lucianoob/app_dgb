@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+
 import Header from '../components/Header';
 import Modal from '../components/Modal';
 import './Login.css';
@@ -41,6 +42,12 @@ class Login extends Component {
         }
     }
 
+    enterLogin(event) {
+        if (event.key === 'Enter') {
+          this.clickLogin();
+        }
+    }
+
     render() {
         return (
             <>
@@ -54,18 +61,20 @@ class Login extends Component {
                                 <div className="card-body">
                                     <form>
                                         <div className="form-group row">
-                                            <label htmlFor="usuario" className="col-md-4 col-form-label text-md-right">Email</label>
+                                            <label htmlFor="usuario" className="col-md-4 col-form-label text-md-right">Usuário</label>
                                             <div className="col-md-6">
-                                                <input type="email" id="usuario" className="form-control" name="usuario" 
-                                                    onChange={(event) => this.setState({usuario: event.target.value})} required autoFocus/>
+                                                <input type="email" id="usuario" className="form-control" name="usuario" placeholder="Entre com o email ou cpf"
+                                                    onChange={(event) => this.setState({usuario: event.target.value})} 
+                                                    onKeyPress={(event) => this.enterLogin(event)} required autoFocus/>
                                             </div>
                                         </div>
 
                                         <div className="form-group row">
                                             <label htmlFor="senha" className="col-md-4 col-form-label text-md-right">Senha</label>
                                             <div className="col-md-6">
-                                                <input type="password" id="senha" className="form-control" name="senha" 
-                                                    onChange={(event) => this.setState({senha: event.target.value})} required/>
+                                                <input type="password" id="senha" className="form-control" name="senha" placeholder="Entre com sua senha"
+                                                    onChange={(event) => this.setState({senha: event.target.value})}
+                                                    onKeyPress={(event) => this.enterLogin(event)} required/>
                                             </div>
                                         </div>
 

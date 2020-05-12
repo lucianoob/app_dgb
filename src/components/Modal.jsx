@@ -34,7 +34,7 @@ class Modal extends Component {
                     </button>
                   </div>
                   <div className="modal-body">
-                    <p>{this.props.dados.data}</p>
+                    <p>{typeof this.props.dados.data === 'object' ? JSON.stringify(this.props.dados.data) : this.props.dados.data}</p>
                   </div>
                   <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" onClick={() => this.clickClose()}>Ok</button>

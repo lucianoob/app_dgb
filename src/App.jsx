@@ -7,6 +7,7 @@ const Sobre = lazy(() => import('./pages/Sobre'));
 const Home = lazy(() => import('./pages/Home'));
 const Login = lazy(() => import('./pages/Login'));
 const Cadastro = lazy(() => import('./pages/Cadastro'));
+const Perfil = lazy(() => import('./pages/Perfil'));
 const Compras = lazy(() => import('./pages/Compras'));
 const Compra = lazy(() => import('./pages/Compra'));
 const Cashback = lazy(() => import('./pages/Cashback'));
@@ -32,9 +33,11 @@ class App extends Component {
           <PrivateRoute exact path='/' component={Home}/>
           <Route exact path='/sobre' component={Sobre}/>
           <Route exact path='/login' component={Login}/>
-          <PrivateRoute exact path='/cadastro' component={Cadastro}/>
+          <Route exact path='/cadastro' component={Cadastro}/>
+          <PrivateRoute exact path='/perfil' component={Perfil}/>
           <PrivateRoute exact path='/compras' component={Compras}/>
           <PrivateRoute exact path='/compra' component={Compra}/>
+          <PrivateRoute exact path='/compra/:id' component={Compra}/>
           <PrivateRoute exact path='/cashback' component={Cashback}/>
         </Switch>
       </Suspense>
